@@ -1,0 +1,27 @@
+.sectionHeader {
+  display: inline-block;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  margin: 1rem auto;
+}
+
+.sectionHeader::after {
+  background: var(--secondary);
+  content: '';
+  bottom: 8px;
+  left: 0;
+  opacity: 0.4;
+  position: absolute;
+  width: 100%;
+  height: 0.5rem;
+  z-index: -1;
+}
+
+@media (min-width: 578px) {
+  .postListContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}

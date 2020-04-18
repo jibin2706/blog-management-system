@@ -1,0 +1,34 @@
+.loginBox {
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5rem 0;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.button {
+  background: white;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 1.25em;
+  max-width: 400px;
+}
+
+.button > svg {
+  width: 25px;
+  margin-right: 1rem;
+}
+
+.button:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

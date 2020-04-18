@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;&family=Roboto&display=swap');
+
+:root {
+  --off-black: #1b2021;
+  --secondary: #cf7500;
+}
+
+body {
+  color: var(--off-black);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'EB+Garamond', serif;
+  font-weight: 600;
+}
