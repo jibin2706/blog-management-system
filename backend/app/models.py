@@ -83,13 +83,26 @@ class Post(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def format_short(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body[:150],
+            'url_slug': self.url_slug,
+            'created_at': self.created_at.strftime('%b %d, %Y'),
+            'updated_at': self.updated_at,
+            'is_publish': self.is_publish,
+            'is_featured': self.is_featured,
+            'user_id': self.user_id
+        }
+
     def format(self):
         return {
             'id': self.id,
             'title': self.title,
             'body': self.body,
             'url_slug': self.url_slug,
-            'created_at': self.created_at,
+            'created_at': self.created_at.strftime('%b %d, %Y'),
             'updated_at': self.updated_at,
             'is_publish': self.is_publish,
             'is_featured': self.is_featured,

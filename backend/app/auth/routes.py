@@ -20,5 +20,9 @@ def login_user():
     return jsonify({
         'success': True,
         'token': token,
-        'name': idinfo['name']
+        'userInfo': {
+            'name': idinfo['name'],
+            'email': idinfo['email'],
+            'picture': idinfo['picture']
+        }
     })

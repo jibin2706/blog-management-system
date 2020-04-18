@@ -1,15 +1,33 @@
 from flask import request, Blueprint, jsonify, abort
 from app.models import Post, User
 from app.auth.func import requires_auth
+from sqlalchemy import and_
 
 user = Blueprint('user', __name__)
 
 
-@user.route('/featured')
-def get_featured_posts():
-    result = Post.query.filter(Post.is_featured == True).all()
+'''
+Query Parameter
+     type -> enum (featured, latest)
+        featured - returns featured posts containing Post.is_featured = True
+        latest - returns posts by sorted Post.created_at
+    limit -> int
+        default value = 10
+'''
+@user.route('/posts')
+def get_posts():
+    postType = request.args.get('type', 'latest', str)
+    limit = request.args.get('limit', 10, int)
 
-    posts = [post.format() for post in result]
+    result = []
+    if postType == 'featured':
+        result = Post.query.filter(
+            and_(Post.is_featured == True, Post.is_publish == True)).limit(limit).all()
+    elif postType == 'latest':
+        result = Post.query.filter(Post.is_publish == True).order_by(
+            Post.created_at.desc()).limit(limit).all()
+
+    posts = [post.format_short() for post in result]
     return jsonify({
         'sucesss': True,
         'posts': posts
