@@ -1,0 +1,42 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 1rem;
+}
+
+.label {
+  display: block;
+  margin: 2rem 0;
+}
+
+.label > input[type='text'],
+.label > textarea {
+  background: rgba(255, 255, 255, 0.1);
+  background-color: #e8eeef;
+  box-sizing: border-box;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+  font-family: 'EB Garamond', serif;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  margin: 0;
+  outline: 0;
+  padding: 10px;
+  width: 100%;
+}
+
+.label > input:focus {
+  background: #d2d9dd;
+}
+.label > input:focus {
+  background: #d2d9dd;
+}
+
+@media (min-width: 992px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}

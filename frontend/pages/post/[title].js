@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import clsx from 'clsx';
+import Link from 'next/link';
 import axios from '../../src/utils/axios';
 import css from '../../src/styles/pages/postdetail.module.css';
+import { AuthContext } from '../../src/components/context/AuthContext';
 
 function PostDetail({ detail }) {
   const post = detail.post;
   const writer = detail.writer;
 
+  const { authenticated, userInfo } = useContext(AuthContext);
+
   return (
     <article style={{ maxWidth: '800px', margin: 'auto', padding: '0 1rem' }}>
+      {authenticated && writer.email === userInfo.email && (
+        <Link href={`/write?postUrl=${post.url_slug}&update=1`}>
+          <a>Edit Post</a>
+        </Link>
+      )}
       <header>
         <h1 className={clsx(css.title)}>{post.title}</h1>
         <p>{post.created_at}</p>
@@ -36,7 +45,6 @@ export async function getServerSideProps(context) {
   const url_slug = context.params.title;
 
   const post = axios.get(`/post?url=${url_slug}`).then((response) => {
-    console.log(response);
     return response.data;
   });
 

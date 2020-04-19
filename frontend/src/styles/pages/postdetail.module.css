@@ -6,7 +6,7 @@
 }
 
 .title::after {
-  background: var(--secondary);
+  background: var(--primary-dark);
   content: '';
   bottom: 8px;
   left: 0;
