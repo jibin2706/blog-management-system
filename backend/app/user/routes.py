@@ -116,3 +116,44 @@ def delete_post(user, post_id):
     return jsonify({
         'sucesss': True
     })
+
+
+# Error handlers
+@user.app_errorhandler(400)
+def page_not_found(e):
+    return jsonify({
+        'success': False,
+        'message': 'Bad Request'
+    }), 400
+
+
+@user.app_errorhandler(401)
+def page_not_found(e):
+    return jsonify({
+        'success': False,
+        'message': 'Not Authorized to make this request'
+    }), 405
+
+
+@user.app_errorhandler(404)
+def page_not_found(e):
+    return jsonify({
+        'success': False,
+        'message': 'Page not found'
+    }), 404
+
+
+@user.app_errorhandler(405)
+def page_not_found(e):
+    return jsonify({
+        'success': False,
+        'message': 'Method not allowed'
+    }), 405
+
+
+@user.app_errorhandler(422)
+def page_not_found(e):
+    return jsonify({
+        'success': False,
+        'message': 'Request cannot be processed'
+    }), 422
