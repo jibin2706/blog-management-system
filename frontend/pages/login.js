@@ -6,6 +6,8 @@ import axios from '../src/utils/axios';
 import { AuthContext } from '../src/components/context/AuthContext';
 import css from '../src/styles/pages/login.module.css';
 
+const CLIENT_ID = '828759278900-8mqop912snst4l66v0auh6c958tn1shf.apps.googleusercontent.com';
+
 function login() {
   const router = useRouter();
   const { authenticated, setAuthenticated, setToken, setUserInfo } = useContext(AuthContext);
@@ -34,7 +36,7 @@ function login() {
       <main className={clsx(css.loginBox)}>
         <h1 className={clsx(css.title)}>Login to write for us!</h1>
         <GoogleLogin
-          clientId="828759278900-8mqop912snst4l66v0auh6c958tn1shf.apps.googleusercontent.com"
+          clientId={CLIENT_ID}
           buttonText="Login"
           render={(renderProps) => (
             <button className={clsx(css.button)} onClick={renderProps.onClick} disabled={renderProps.disabled}>
