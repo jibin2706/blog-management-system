@@ -56,7 +56,7 @@ def get_post():
 
 
 @user.route('/post', methods=['POST'])
-@requires_auth()
+@requires_auth('post:article')
 def save_post(user):
     body = request.get_json()
 
@@ -68,6 +68,50 @@ def save_post(user):
     except Exception as e:
         print(e)
         return abort(404)
+
+    return jsonify({
+        'sucesss': True
+    })
+
+
+@user.route('/post', methods=['PATCH'])
+@requires_auth('patch:article')
+def update_post(user):
+    body = request.get_json()
+
+    post = Post.query.filter(Post.id == body['id']).first()
+    if post is None:
+        return abort(404)
+
+    try:
+        post.title = body['title']
+        post.url_slug = body['url_slug']
+        post.body = body['body']
+        post.is_publish = body['is_publish']
+        post.update()
+    except Exception as e:
+        print(e)
+        return abort(404)
+
+    return jsonify({
+        'sucesss': True
+    })
+
+
+@user.route('/post/<post_id>', methods=['DELETE'])
+@requires_auth('delete:article')
+def delete_post(user, post_id):
+    body = request.get_json()
+
+    post = Post.query.filter(Post.id == post_id).first()
+    if post is None:
+        return abort(404)
+
+    try:
+        post.delete()
+    except Exception as e:
+        print(e)
+        return abort(401)
 
     return jsonify({
         'sucesss': True

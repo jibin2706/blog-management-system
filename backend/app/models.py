@@ -83,6 +83,13 @@ class Post(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def update(self):
+        db.session.commit()
+
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
     def format_short(self):
         return {
             'id': self.id,
