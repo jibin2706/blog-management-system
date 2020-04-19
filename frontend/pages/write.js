@@ -6,8 +6,8 @@ import { AuthContext } from '../src/components/context/AuthContext';
 import css from '../src/styles/pages/write.module.css';
 
 function write({ detail }) {
-  const post = detail.post;
-  const writer = detail.writer;
+  const post = detail?.post;
+  const writer = detail?.writer;
 
   const router = useRouter();
   // page can be of 2 types -> 1. add new post  2. update existing post
@@ -16,7 +16,7 @@ function write({ detail }) {
   const [type, setType] = useState('ADD');
   const { authenticated, userInfo, token } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    title: 'test',
+    title: '',
     url_slug: '',
     body: '',
     is_publish: false,
@@ -33,7 +33,7 @@ function write({ detail }) {
   }, [router]);
 
   useEffect(() => {
-    if (writer.email === userInfo.email) {
+    if (writer?.email === userInfo.email) {
       setFormData({
         title: post.title,
         url_slug: post.url_slug,
